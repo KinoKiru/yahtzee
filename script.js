@@ -7,6 +7,40 @@ const Yahtzee = () => {
     //keeps the numbers which the user want locked
     obj.dis = [];
 
+    obj.id = 1;
+
+    //makes the new inputs tags based on the amount given
+    //and if it exist read the index on the rounds
+    obj.makeImgTags = (amount) => {
+        if (document.querySelectorAll("div>input").length >= amount) {
+            if (obj.id > 3){
+                let inputs = document.querySelectorAll("div>input");
+                for (let i = 0; i < inputs.length; i++) inputs[i].removeAttribute("onclick");
+            } else obj.fillImgTags();
+        } else {
+            let id = document.getElementById("photoCollection")
+            for (let i = 0; i < amount; i++) {
+                let input = document.createElement("input");
+                id.appendChild(input);
+            }
+            obj.fillImgTags();
+        }
+        obj.id++;
+    }
+
+    //fills the inputs with the correct attributes TODO hier nog de set attr aanpassen
+    obj.fillImgTags = () => {
+        let inputs = document.querySelectorAll("div>input");
+        obj.getRandomNumbers(inputs.length);
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].setAttribute("src", `img/dice_${obj.rnd[i]}.jpg`);
+            inputs[i].setAttribute("type", "image");
+            inputs[i].setAttribute("onclick", `objYathzee.setDisabled(${i})`);
+            inputs[i].setAttribute("value", `${i}`);
+        }
+        obj.returnTotalValue();
+    }
+
     //generates random numbers
     obj.getRandomNumbers = (imgAmount) => {
         //resets the random arr
@@ -20,7 +54,7 @@ const Yahtzee = () => {
             //if the disabled aren't even to the btns reroll the values
             setValues(obj.dis.length);
         } else {
-           setValues(0);
+            setValues(0);
         }
 
         function setValues (length) {
@@ -35,32 +69,6 @@ const Yahtzee = () => {
         return obj.rnd
     }
 
-    //makes the new img takes based on the amount given
-    obj.makeImgTags = (amount) => {
-        if (document.querySelectorAll("div>input").length >= amount) {
-        } else {
-            let id = document.getElementById("photoCollection")
-            for (let i = 0; i < amount; i++) {
-                let input = document.createElement("input");
-                id.appendChild(input);
-            }
-        }
-        obj.fillImgTags();
-    }
-
-    //fills the inputs with the correct attributes TODO hier nog de set attr aanpassen
-    obj.fillImgTags = () => {
-        let inputs = document.querySelectorAll("div>input");
-        let arr = obj.getRandomNumbers(inputs.length);
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].setAttribute("src", `img/dice_${obj.rnd[i]}.jpg`);
-            inputs[i].setAttribute("type", "image");
-            inputs[i].setAttribute("onclick", `objYathzee.setDisabled(${i})`);
-            inputs[i].setAttribute("value", `${i}`);
-        }
-        obj.returnTotalValue();
-    }
-
     obj.returnTotalValue = () => {
         let totalValue = 0;
         for (let i = 0; i < obj.rnd.length; i++) {
@@ -68,6 +76,7 @@ const Yahtzee = () => {
         }
         document.getElementById("sum-value").innerText = totalValue.toString();
         document.getElementById("avg-value").innerText = Math.floor(totalValue / obj.rnd.length).toString();
+        document.getElementById("sum-rounds").innerText = obj.id.toString();
         //console.log(obj.RulesChecker());
         return totalValue;
     }
