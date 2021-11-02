@@ -13,8 +13,10 @@ function getRandomNumbers(imgAmount) {
 }
 
 function makeImgTags (amount) {
+    let id = document.getElementById("fotoCollection")
     for (let i = 0; i < amount; i++){
-         document.createElement("img");
+       let img =  document.createElement("img");
+      id.appendChild(img);
     }
     fillImgTags();
 }
@@ -23,6 +25,6 @@ function fillImgTags () {
     let imgTags = document.querySelectorAll("img");
     let arr = getRandomNumbers(imgTags.length);
     for (let i = 0; i < imgTags.length; i++){
-        imgTags[i].setAttribute("src", `img/${arr[i]}.png`);
+        imgTags[i].setAttribute("src", `img/dice_${arr[i]}.jpg`);
     }
 }
