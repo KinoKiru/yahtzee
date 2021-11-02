@@ -13,7 +13,7 @@ const Yahtzee = () => {
     //and if it exist read the index on the rounds
     obj.makeImgTags = (amount) => {
         if (document.querySelectorAll("div>input").length >= amount) {
-            if (obj.id > 3){
+            if (obj.id > 3) {
                 let inputs = document.querySelectorAll("div>input");
                 for (let i = 0; i < inputs.length; i++) inputs[i].removeAttribute("onclick");
             } else obj.fillImgTags();
@@ -28,16 +28,32 @@ const Yahtzee = () => {
         obj.id++;
     }
 
-    //fills the inputs with the correct attributes TODO hier nog de set attr aanpassen
     obj.fillImgTags = () => {
         let inputs = document.querySelectorAll("div>input");
         obj.getRandomNumbers(inputs.length);
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].setAttribute("src", `img/dice_${obj.rnd[i]}.jpg`);
-            inputs[i].setAttribute("type", "image");
-            inputs[i].setAttribute("onclick", `objYathzee.setDisabled(${i})`);
-            inputs[i].setAttribute("value", `${i}`);
+
+        if (obj.dis.length > 0) {
+            for (let i = 0; i < obj.dis.length; i++) {
+                inputs[i].removeAttribute("onclick")
+                inputs[i].setAttribute("src", `img/dice_${obj.rnd[i]}.jpg`);
+                inputs[i].setAttribute("type", "image");
+                inputs[i].setAttribute("value", `${i}`);
+                inputs[i].style.border = "1px solid red";
+            }
+            setAttr(obj.dis.length);
+        } else {
+            setAttr(0);
         }
+
+        function setAttr(length) {
+            for (let i = length; i < obj.rnd.length; i++) {
+                inputs[i].setAttribute("src", `img/dice_${obj.rnd[i]}.jpg`);
+                inputs[i].setAttribute("type", "image");
+                inputs[i].setAttribute("onclick", `objYathzee.setDisabled(${i})`);
+                inputs[i].setAttribute("value", `${i}`);
+            }
+        }
+
         obj.returnTotalValue();
     }
 
@@ -48,7 +64,7 @@ const Yahtzee = () => {
 
         if (obj.dis.length !== 0) {
             //fills the random numbers arr with the disabled buttons values
-            for (let i = 0; i < obj.dis.length; i++){
+            for (let i = 0; i < obj.dis.length; i++) {
                 obj.rnd[i] = obj.dis[i];
             }
             //if the disabled aren't even to the btns reroll the values
@@ -57,7 +73,7 @@ const Yahtzee = () => {
             setValues(0);
         }
 
-        function setValues (length) {
+        function setValues(length) {
             for (let i = length; i < imgAmount; i++) {
                 let result = Math.floor(Math.random() * 10);
                 while (result > 6 || result === 0) {
@@ -66,6 +82,7 @@ const Yahtzee = () => {
                 obj.rnd[i] = result;
             }
         }
+
         return obj.rnd
     }
 
