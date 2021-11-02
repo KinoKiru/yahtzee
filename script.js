@@ -52,7 +52,17 @@ const Yahtzee = () => {
     }
 
     obj.checkRolledValues = () => {
+        let counts = {}
 
+        for(let i = 0; i < obj.arr.length; i++){
+            if (counts[obj.arr[i]]){
+                counts[obj.arr[i]] += 1
+            } else {
+                counts[obj.arr[i]] = 1
+            }
+        }
+
+        console.log(counts)
 
         //deze checkt alleen op de dubble dingen niet hoevaak dit gebeurt
         //console.log(obj.arr.filter((item, index) => obj.arr.indexOf(item) != index));
