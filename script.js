@@ -43,29 +43,38 @@ const Yahtzee = () => {
 
     obj.returnTotalValue = () => {
         let totalValue = 0;
-        for (let i = 0; i < obj.arr.length; i++){
+        for (let i = 0; i < obj.arr.length; i++) {
             totalValue += obj.arr[i];
         }
         let value = document.getElementById("total-value").innerText = totalValue.toString();
-        obj.checkRolledValues();
+        console.log(obj.RulesChecker());
         return totalValue;
     }
 
-    obj.checkRolledValues = () => {
+    //fills the counts object with values and how many times they where found in the values array
+    //RETURNS: object
+    obj.checkDuplicated = () => {
         let counts = {}
 
-        for(let i = 0; i < obj.arr.length; i++){
-            if (counts[obj.arr[i]]){
+        for (let i = 0; i < obj.arr.length; i++) {
+            if (counts[obj.arr[i]]) {
                 counts[obj.arr[i]] += 1
             } else {
                 counts[obj.arr[i]] = 1
             }
         }
+        return counts;
+    }
 
-        console.log(counts)
+    obj.RulesChecker = () => {
+        let objCount = obj.checkDuplicated();
+        if (obj.arr.includes([1,2,3,4]) || obj.arr.includes([2,3,4,5]) || obj.arr.includes([3,4,5,6])){
+            console.log("Kleine straat");
+        }
+        if (obj.arr.includes([1,2,3,4,5]) || obj.arr.includes([2,3,4,5,6])){
+            console.log("Groote straat")
+        }
 
-        //deze checkt alleen op de dubble dingen niet hoevaak dit gebeurt
-        //console.log(obj.arr.filter((item, index) => obj.arr.indexOf(item) != index));
     }
 
     return obj;
