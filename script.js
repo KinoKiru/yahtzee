@@ -68,12 +68,12 @@ const Yahtzee = () => {
 
     obj.RulesChecker = () => {
         let objCount = obj.checkDuplicated();
-     if (obj.arr.includes([1,2,3,4]) || obj.arr.includes([2,3,4,5]) || obj.arr.includes([3,4,5,6])){
-         console.log("Kleine straat");
-     }
-     if (obj.arr.includes([1,2,3,4,5]) || obj.arr.includes([2,3,4,5,6])){
-         console.log("Groote straat")
-     }
+        if (obj.arr.includes([1,2,3,4]) || obj.arr.includes([2,3,4,5]) || obj.arr.includes([3,4,5,6])){
+            console.log("Kleine straat");
+        }
+        if (obj.arr.includes([1,2,3,4,5]) || obj.arr.includes([2,3,4,5,6])){
+            console.log("Groote straat")
+        }
 
     }
 
