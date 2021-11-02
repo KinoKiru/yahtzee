@@ -53,7 +53,6 @@ const Yahtzee = () => {
                 inputs[i].setAttribute("value", `${i}`);
             }
         }
-
         obj.returnTotalValue();
     }
 
@@ -125,7 +124,6 @@ const Yahtzee = () => {
 
     }
 
-    //TODO na de reroll attr verwijderd hebben
     obj.setDisabled = (value) => {
         obj.dis.push(obj.rnd[value]);
 
