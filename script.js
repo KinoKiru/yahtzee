@@ -93,7 +93,7 @@ const Yahtzee = () => {
         document.getElementById("sum-value").innerText = totalValue.toString();
         document.getElementById("avg-value").innerText = Math.floor(totalValue / obj.rnd.length).toString();
         document.getElementById("sum-rounds").innerText = obj.id.toString();
-        //console.log(obj.RulesChecker());
+        obj.RulesChecker();
         return totalValue;
     }
 
@@ -115,13 +115,26 @@ const Yahtzee = () => {
     //TODO: zorg dat de juiste punten zicht baar worden en worden genabled
     obj.RulesChecker = () => {
         let objCount = obj.checkDuplicated();
-        if (obj.rnd.includes([1, 2, 3, 4]) || obj.rnd.includes([2, 3, 4, 5]) || obj.rnd.includes([3, 4, 5, 6])) {
+        let i = 0;
+
+        //dit hieronder werkt niet
+       /* if (obj.rnd.includes([1, 2, 3, 4]) || obj.rnd.includes([2, 3, 4, 5]) || obj.rnd.includes([3, 4, 5, 6])) {
             console.log("Kleine straat");
         }
         if (obj.rnd.includes([1, 2, 3, 4, 5]) || obj.rnd.includes([2, 3, 4, 5, 6])) {
             console.log("Groote straat")
-        }
+        }*/
 
+        for (const objCountKey in objCount) {
+            i++;
+            console.log(objCount[i])
+            if (objCount[i] >= 3){
+                console.log("3 of a kind");
+            }
+            if (objCount[i] >= 4){
+                console.log("4 of a kind");
+            }
+        }
     }
 
     obj.setDisabled = (value) => {
