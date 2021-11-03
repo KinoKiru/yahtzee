@@ -6,7 +6,7 @@ const Yahtzee = () => {
     obj.rnd = [];
     //keeps the numbers which the user want locked
     obj.dis = [];
-
+    //
     obj.id = 1;
 
     //makes the new inputs tags based on the amount given
@@ -28,6 +28,7 @@ const Yahtzee = () => {
         obj.id++;
     }
 
+    //
     obj.fillImgTags = () => {
         let inputs = document.querySelectorAll("div>input");
         obj.getRandomNumbers(inputs.length);
@@ -38,7 +39,7 @@ const Yahtzee = () => {
                 inputs[i].setAttribute("src", `img/dice_${obj.rnd[i]}.jpg`);
                 inputs[i].setAttribute("type", "image");
                 inputs[i].setAttribute("value", `${i}`);
-                inputs[i].style.border = "1px solid red";
+                inputs[i].style.border = "3px solid red";
             }
             setAttr(obj.dis.length);
         } else {
@@ -85,6 +86,7 @@ const Yahtzee = () => {
         return obj.rnd
     }
 
+    //
     obj.returnTotalValue = () => {
         let totalValue = 0;
         for (let i = 0; i < obj.rnd.length; i++) {
@@ -137,6 +139,7 @@ const Yahtzee = () => {
         }
     }
 
+    //
     obj.setDisabled = (value) => {
         obj.dis.push(obj.rnd[value]);
 
@@ -151,6 +154,5 @@ const Yahtzee = () => {
     }
     return obj;
 }
-
 
 let objYathzee = Yahtzee();
