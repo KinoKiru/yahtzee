@@ -9,7 +9,7 @@ const Yahtzee = () => {
 
     obj.id = 1;
 
-    /*makes the new inputs tags based on the amount given
+    /* makes the new inputs tags based on the amount given
     and if it exist read the index on the rounds */
     obj.makeImgTags = (amount) => {
         if (document.querySelectorAll("div>input").length >= amount) {
@@ -93,9 +93,9 @@ const Yahtzee = () => {
         return totalValue;
     }
 
-    /*fills the counts object with values and how many times 
+    /* fills the counts object with values and how many times 
     they where found in the values array
-    RETURNS: object*/
+    RETURNS: object */
     obj.checkDuplicated = () => {
         let counts = {}
         for (let i = 0; i < obj.rnd.length; i++) {
