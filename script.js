@@ -6,7 +6,7 @@ const Yahtzee = () => {
     obj.rnd = [];
     //keeps the numbers which the user want locked
     obj.dis = [];
-    //
+
     obj.id = 1;
 
     //makes the new inputs tags based on the amount given
@@ -28,7 +28,6 @@ const Yahtzee = () => {
         obj.id++;
     }
 
-    //
     obj.fillImgTags = () => {
         let inputs = document.querySelectorAll("div>input");
         obj.getRandomNumbers(inputs.length);
@@ -39,7 +38,7 @@ const Yahtzee = () => {
                 inputs[i].setAttribute("src", `img/dice_${obj.rnd[i]}.jpg`);
                 inputs[i].setAttribute("type", "image");
                 inputs[i].setAttribute("value", `${i}`);
-                inputs[i].style.border = "3px solid red";
+                inputs[i].style.border = "1px solid red";
             }
             setAttr(obj.dis.length);
         } else {
@@ -54,6 +53,7 @@ const Yahtzee = () => {
                 inputs[i].setAttribute("value", `${i}`);
             }
         }
+
         obj.returnTotalValue();
     }
 
@@ -86,7 +86,6 @@ const Yahtzee = () => {
         return obj.rnd
     }
 
-    //
     obj.returnTotalValue = () => {
         let totalValue = 0;
         for (let i = 0; i < obj.rnd.length; i++) {
@@ -114,38 +113,63 @@ const Yahtzee = () => {
         return counts;
     }
 
-    //TODO: zorg dat de juiste punten zicht baar worden en worden genabled
+    //TODO: De index van objCount == de index van het getal wat meerdere keren is voorgekomen
     obj.RulesChecker = () => {
         let objCount = obj.checkDuplicated();
-        let i = 0;
-        let carre = false
-        //dit hieronder werkt niet
-       /* if (obj.rnd.includes([1, 2, 3, 4]) || obj.rnd.includes([2, 3, 4, 5]) || obj.rnd.includes([3, 4, 5, 6])) {
-            console.log("Kleine straat");
-        }
-        if (obj.rnd.includes([1, 2, 3, 4, 5]) || obj.rnd.includes([2, 3, 4, 5, 6])) {
-            console.log("Groote straat")
-        }*/
+        let temp = [];
+        let count = 0;
+        let ah = [];
 
-        
-        //arry sort?
+        let btns = document.querySelectorAll("td>button");
+        let points = document.querySelectorAll("tr>td.variable>p");
         for (const objCountKey in objCount) {
-            i++;
-            console.log(objCount[i])
-            if (objCount[i] >= 3){
-                console.log("3 of a kind");
-                carre = true;
-            }
-            if (objCount[i] >= 2 && carre){
-                console.log("Carre");
-            }
-            if (objCount[i] >= 4){
-                console.log("4 of a kind");
+            ah.push(objCount[objCountKey]);
+        }
+
+        for (let i = 0; i < obj.rnd.length; i++) {
+            temp[i] = obj.rnd[i];
+        }
+
+        //zet de array van klein naar groot
+        temp.sort((a, b) => {
+            return a - b;
+        });
+        let eerste = temp[0];
+
+        //werkt
+        if (ah.includes(2) && ah.includes(3)) {
+            console.log("Full house");
+            btns[1].removeAttribute("disabled")
+        }
+        //werkt
+        if (ah.includes(3)) {
+            console.log("3 of a kind");
+        }
+        //werkt
+        if (ah.includes(4)) {
+            console.log("Carre");
+        }
+
+        if (ah.includes(5)) {
+            console.log("yathzee");
+        }
+
+        for (let j = 0; j < obj.rnd.length; j++) {
+            while (temp[j] === eerste) {
+                eerste++;
+                count++;
+                //werkt
+                if (count === 4) {
+                    console.log("Kleine straat");
+                }
+                //werkt
+                if (count === 5) {
+                    console.log("Grote straat");
+                }
             }
         }
     }
 
-    //
     obj.setDisabled = (value) => {
         obj.dis.push(obj.rnd[value]);
 
@@ -160,5 +184,6 @@ const Yahtzee = () => {
     }
     return obj;
 }
+
 
 let objYathzee = Yahtzee();

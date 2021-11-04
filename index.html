@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Yahtzee</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
@@ -31,5 +32,52 @@ amount of the dices can be changed by changing the given value in the method-->
         <label>Totaal aantal worpen: <label id="sum-rounds"></label></label><br>
     </fieldset>
 </form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Optie</th>
+        <th>Punten</th>
+        <th>Mogelijkheid</th>
+    </tr>
+    </thead>
+    <tbody>
+     <tr>
+         <td>Three of a kind</td>
+         <td class="variable"><p></p></td>
+         <td><button disabled>Selecteer</button></td>
+     </tr>
+     <tr>
+         <td>Full house</td>
+         <td>25</td>
+         <td><button disabled>Selecteer</button></td>
+     </tr>
+     <tr>
+         <td>carre</td>
+         <td class="variable"><p></p></td>
+         <td><button disabled>Selecteer</button></td>
+     </tr>
+     <tr>
+         <td>Kleine straat</td>
+         <td>30</td>
+         <td><button disabled>Selecteer</button></td>
+     </tr>
+     <tr>
+         <td>Grote straat</td>
+         <td>40</td>
+         <td><button disabled>Selecteer</button></td>
+     </tr>
+     <tr>
+         <td>Chance</td>
+         <td class="variable"><p></p></td>
+         <td><button disabled>Selecteer</button></td>
+     </tr>
+     <tr>
+         <td>Yathzee</td>
+         <td>50</td>
+         <td><button disabled>Selecteer</button></td>
+     </tr>
+    </tbody>
+</table>
 </body>
 </html>
