@@ -127,6 +127,8 @@ const Yahtzee = () => {
             console.log("Groote straat")
         }*/
 
+        
+        //arry sort?
         for (const objCountKey in objCount) {
             i++;
             console.log(objCount[i])
