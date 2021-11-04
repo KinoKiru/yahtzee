@@ -9,8 +9,8 @@ const Yahtzee = () => {
 
     obj.id = 1;
 
-    //makes the new inputs tags based on the amount given
-    //and if it exist read the index on the rounds
+    /*makes the new inputs tags based on the amount given
+    and if it exist read the index on the rounds */
     obj.makeImgTags = (amount) => {
         if (document.querySelectorAll("div>input").length >= amount) {
             if (obj.id > 3) {
@@ -53,7 +53,6 @@ const Yahtzee = () => {
                 inputs[i].setAttribute("value", `${i}`);
             }
         }
-
         obj.returnTotalValue();
     }
 
@@ -78,7 +77,6 @@ const Yahtzee = () => {
                 obj.rnd[i] = Math.floor(Math.random() * 6) + 1;
             }
         }
-
         return obj.rnd
     }
 
@@ -95,8 +93,9 @@ const Yahtzee = () => {
         return totalValue;
     }
 
-    //fills the counts object with values and how many times they where found in the values array
-    //RETURNS: object
+    /*fills the counts object with values and how many times 
+    they where found in the values array
+    RETURNS: object*/
     obj.checkDuplicated = () => {
         let counts = {}
         for (let i = 0; i < obj.rnd.length; i++) {
@@ -130,21 +129,21 @@ const Yahtzee = () => {
             temp[i] = obj.rnd[i];
         }
 
-        //zet de array van klein naar groot
+        //Turns array from small to large
         temp.sort((a, b) => {
             return a - b;
         });
         let eerste = temp[0];
 
-        //werkt
+        //all includes works
         if (ah.includes(2) && ah.includes(3)) {
             btns[1].removeAttribute("disabled");
         }
-        //werkt
+        
         if (ah.includes(3)) {
             btns[0].removeAttribute("disabled");
         }
-        //werkt
+        
         if (ah.includes(4)) {
             btns[2].removeAttribute("disabled");
         }
@@ -160,11 +159,11 @@ const Yahtzee = () => {
             while (temp[j] === eerste) {
                 eerste++;
                 count++;
-                //werkt
+                //works
                 if (count === 4) {
                     btns[3].removeAttribute("disabled");
                 }
-                //werkt
+                //works
                 if (count === 5) {
                     btns[4].removeAttribute("disabled");
                 }
@@ -200,9 +199,7 @@ const Yahtzee = () => {
             btns[i].disabled = true;
         }
     }
-
     return obj;
 }
-
 
 let objYathzee = Yahtzee();
