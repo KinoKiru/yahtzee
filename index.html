@@ -9,24 +9,18 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="script.js" defer></script>
 </head>
-<body>
+<body onload="objYathzee.startGame()">
 <div id="photoCollection">
     <!--In this div will the dices be placed-->
 </div>
 
 <!--this button has an onclick event which makes the dices
 amount of the dices can be changed by changing the given value in the method-->
-<button onclick="objYathzee.makeImgTags(5)">Gooi</button>
+<button id="gooi" onclick="objYathzee.makeImgTags(5)">Gooi</button>
 
 <form>
     <fieldset style="width: 30%;">
         <legend>Scoreformulier</legend>
-        <label>Aantal keren dat three-of-a-kind is gegooid:</label><br>
-        <label>Aantal keren dat carre is gegooid: </label><br>
-        <label>Aantal keren dat FULL HOUSE is gegooid: </label><br>
-        <label>Aantal keren dat kleine straat is gegooid: </label><br>
-        <label>Aantal keren dat grote straat is gegooid: </label><br>
-        <label>Aantal keren dat chance is gegooid: </label><br><br>
         <label>Totaal aantal punten dat is behaald: <label id="sum-value"></label></label><br>
         <label>gemiddeld aantal punten per worp: <label id="avg-value"></label></label><br>
         <label>Totaal aantal worpen: <label id="sum-rounds"></label></label><br>
@@ -44,38 +38,38 @@ amount of the dices can be changed by changing the given value in the method-->
     <tbody>
      <tr>
          <td>Three of a kind</td>
-         <td class="variable"><p></p></td>
-         <td><button disabled>Selecteer</button></td>
+         <td><p>3 x ?</p></td>
+         <td><button>Selecteer</button></td>
      </tr>
      <tr>
          <td>Full house</td>
          <td>25</td>
-         <td><button disabled>Selecteer</button></td>
+         <td><button >Selecteer</button></td>
      </tr>
      <tr>
          <td>carre</td>
-         <td class="variable"><p></p></td>
-         <td><button disabled>Selecteer</button></td>
+         <td><p>4 x ?</p></td>
+         <td><button >Selecteer</button></td>
      </tr>
      <tr>
          <td>Kleine straat</td>
          <td>30</td>
-         <td><button disabled>Selecteer</button></td>
+         <td><button >Selecteer</button></td>
      </tr>
      <tr>
          <td>Grote straat</td>
          <td>40</td>
-         <td><button disabled>Selecteer</button></td>
+         <td><button >Selecteer</button></td>
      </tr>
      <tr>
          <td>Chance</td>
          <td id="chance"></td>
-         <td><button disabled>Selecteer</button></td>
+         <td><button >Selecteer</button></td>
      </tr>
      <tr>
          <td>Yathzee</td>
          <td>50</td>
-         <td><button disabled>Selecteer</button></td>
+         <td><button >Selecteer</button></td>
      </tr>
     </tbody>
 </table>

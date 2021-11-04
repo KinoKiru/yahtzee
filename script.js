@@ -78,6 +78,7 @@ const Yahtzee = () => {
                 obj.rnd[i] = Math.floor(Math.random() * 6) + 1;
             }
         }
+
         return obj.rnd
     }
 
@@ -98,7 +99,6 @@ const Yahtzee = () => {
     //RETURNS: object
     obj.checkDuplicated = () => {
         let counts = {}
-
         for (let i = 0; i < obj.rnd.length; i++) {
             if (counts[obj.rnd[i]]) {
                 counts[obj.rnd[i]] += 1
@@ -109,14 +109,17 @@ const Yahtzee = () => {
         return counts;
     }
 
-    //TODO: De index van objCount == de index van het getal wat meerdere keren is voorgekomen
     obj.RulesChecker = () => {
         let objCount = obj.checkDuplicated();
         let temp = [];
         let count = 0;
         let ah = [];
-
         let btns = document.querySelectorAll("td>button");
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].disabled = true;
+            btns[i].setAttribute("onclick", "objYathzee.endGame()");
+        }
+
         let points = document.querySelectorAll("tr>td.variable>p");
 
         for (const objCountKey in objCount) {
@@ -135,33 +138,35 @@ const Yahtzee = () => {
 
         //werkt
         if (ah.includes(2) && ah.includes(3)) {
-            console.log("Full house");
-            btns[1].removeAttribute("disabled")
+            btns[1].removeAttribute("disabled");
         }
         //werkt
         if (ah.includes(3)) {
-            console.log("3 of a kind");
+            btns[0].removeAttribute("disabled");
         }
         //werkt
         if (ah.includes(4)) {
-            console.log("Carre");
+            btns[2].removeAttribute("disabled");
         }
 
         if (ah.includes(5)) {
-            console.log("yathzee");
+            btns[6].removeAttribute("disabled");
         }
 
+        if (objCount) {
+            btns[5].removeAttribute("disabled");
+        }
         for (let j = 0; j < obj.rnd.length; j++) {
             while (temp[j] === eerste) {
                 eerste++;
                 count++;
                 //werkt
                 if (count === 4) {
-                    console.log("Kleine straat");
+                    btns[3].removeAttribute("disabled");
                 }
                 //werkt
                 if (count === 5) {
-                    console.log("Grote straat");
+                    btns[4].removeAttribute("disabled");
                 }
             }
         }
@@ -179,6 +184,23 @@ const Yahtzee = () => {
             }
         }
     }
+
+    obj.endGame = () => {
+        let btns = document.querySelectorAll("td>button");
+        document.getElementById("gooi").disabled = true
+        obj.id = 3;
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].disabled = true;
+        }
+    }
+
+    obj.startGame = () => {
+        let btns = document.querySelectorAll("td>button");
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].disabled = true;
+        }
+    }
+
     return obj;
 }
 
