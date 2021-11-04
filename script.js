@@ -116,7 +116,7 @@ const Yahtzee = () => {
     obj.RulesChecker = () => {
         let objCount = obj.checkDuplicated();
         let i = 0;
-
+        let carre = false
         //dit hieronder werkt niet
        /* if (obj.rnd.includes([1, 2, 3, 4]) || obj.rnd.includes([2, 3, 4, 5]) || obj.rnd.includes([3, 4, 5, 6])) {
             console.log("Kleine straat");
@@ -130,6 +130,10 @@ const Yahtzee = () => {
             console.log(objCount[i])
             if (objCount[i] >= 3){
                 console.log("3 of a kind");
+                carre = true;
+            }
+            if (objCount[i] >= 2 && carre){
+                console.log("Carre");
             }
             if (objCount[i] >= 4){
                 console.log("4 of a kind");
