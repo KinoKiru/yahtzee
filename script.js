@@ -75,14 +75,9 @@ const Yahtzee = () => {
 
         function setValues(length) {
             for (let i = length; i < imgAmount; i++) {
-                let result = Math.floor(Math.random() * 10);
-                while (result > 6 || result === 0) {
-                    result = Math.floor(Math.random() * 10);
-                }
-                obj.rnd[i] = result;
+                obj.rnd[i] = Math.floor(Math.random() * 6) + 1;
             }
         }
-
         return obj.rnd
     }
 
@@ -94,6 +89,7 @@ const Yahtzee = () => {
         document.getElementById("sum-value").innerText = totalValue.toString();
         document.getElementById("avg-value").innerText = Math.floor(totalValue / obj.rnd.length).toString();
         document.getElementById("sum-rounds").innerText = obj.id.toString();
+        document.getElementById("chance").innerText = totalValue.toString();
         obj.RulesChecker();
         return totalValue;
     }
@@ -122,6 +118,7 @@ const Yahtzee = () => {
 
         let btns = document.querySelectorAll("td>button");
         let points = document.querySelectorAll("tr>td.variable>p");
+
         for (const objCountKey in objCount) {
             ah.push(objCount[objCountKey]);
         }
